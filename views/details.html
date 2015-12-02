@@ -1,0 +1,277 @@
+<div class="container-fluid" data-ng-init="init()">
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<h1>Vetting Process</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 col-md-offset-5">
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#acceptedBox">Accept</button>
+			<div class="modal fade" id="acceptedBox">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							The following submission will be vetted, are you sure you want accept it? <br/>
+							<span class="glyphicon glyphicon-warning-sign" aria-hidden="true"></span> Please do not forgot to download all the documents and save them into Objective Systems. 
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button ng-click="accepted()" type="button" class="btn btn-primary">Accept</button>
+						</div>
+					</div>
+				</div>
+			</div>
+			<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#denyBox">Deny</button>
+			<div class="modal fade" id="denyBox">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+							<h4 class="modal-title">Modal title</h4>
+						</div>
+						<div class="modal-body">
+							This application's going to be deny, help our agent to know why. 
+							<textarea name="deniedDescription" id="inputDeniedDescription" class="form-control" rows="3" required="required"></textarea>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							<button ng-click="deny()" type="button" class="btn btn-primary">Deny</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">The Building </h3>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Title</td>
+									<td>{{submissions.title}}</td>
+								</tr>
+								<tr>
+									<td>Street address of building</td>
+									<td>{{submissions.address}}</td>
+								</tr>
+								<tr>
+									<td>Description of building work</td>
+									<td>{{submissions.buildingWork}}</td>
+								</tr>
+								<tr>
+									<td>Valuation Number</td>
+									<td>{{submissions.valuation}}</td>
+								</tr>
+								<tr>
+									<td>Legal description of land where building is located</td>
+									<td>{{submissions.legalDescription}}</td>
+								</tr>
+								<tr>
+									<td>Building name</td>
+									<td>{{submissions.buildingInfo.name}}</td>
+								</tr>
+								<tr>
+									<td>Number of levels</td>
+									<td>{{submissions.buildingInfo.level}}</td>
+								</tr>
+								<tr>
+									<td>Current, lawfully established, use</td>
+									<td>{{submissions.lawfullyUse.first}} {{submissions.lawfullyUse.second}}</td>
+								</tr>
+								<tr>
+									<td>Year First Constructed</td>
+									<td>{{submissions.old}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Owner</h3>
+				</div>
+				<div class="panel-body">
+					Name : {{submissions.client.name}} <br/>
+					Address : {{submissions.client.address.street}}, {{submissions.client.address.suburb}}, {{submissions.client.address.postCode}}, {{submissions.client.address.city}} <br/>
+					Phone : {{submissions.client.phone}} <br/>
+					E-mail : {{submissions.client.mail}} <br/>
+					Website : {{submissions.client.website}} <br/>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Agent</h3>
+				</div>
+				<div class="panel-body">
+					Name : {{submissions.agent.name}} <br/>
+					Address : {{submissions.agent.address.street}}, {{submissions.agent.address.suburb}}, {{submissions.agent.address.postCode}}, {{submissions.agent.address.city}} <br/>
+					Phone : {{submissions.agent.phone}} <br/>
+					E-mail : {{submissions.agent.mail}} <br/>
+					Website : {{submissions.agent.website}} <br/>
+				</div>
+			</div>
+		</div>
+		<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">First Point Of Contact</h3>
+				</div>
+				<div class="panel-body">
+					Name : {{submissions.contact.name}} <br/>
+					Address : {{submissions.contact.address.street}}, {{submissions.contact.address.suburb}}, {{submissions.contact.address.postCode}}, {{submissions.contact.address.city}} <br/>
+					Phone : {{submissions.contact.phone}} <br/>
+					E-mail : {{submissions.contact.mail}} <br/>
+					Website : {{submissions.contact.website}} <br/>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">The Project</h3>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive">
+						<table class="table table-hover">
+							<thead>
+								<tr>
+									<th>Field</th>
+									<th>Value</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>Pre-Application</td>
+									<td>{{submissions.project.info}}</td>
+								</tr>
+								<tr>
+									<td>Specified Systems</td>
+									<td>{{submissions.buildingInfo.speSystem}}</td>
+								</tr>
+								<tr>
+									<td>Estimate value</td>
+									<td>{{submissions.project.value}} $NZD</td>
+								</tr>
+								<tr>
+									<td>Total floor area</td>
+									<td>{{submissions.buildingInfo.totalFloor}} sqm2</td>
+								</tr>
+								<tr>
+									<td>Affected Area</td>
+									<td>{{submissions.buildingInfo.area}} sqm2</td>
+								</tr>
+								<tr>
+									<td>Year First Constructed</td>
+									<td>{{submissions.old}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">LBP</h3>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive" >
+						<table class="table table-condensed">
+							<thead class="tableHead"> 
+								<tr>
+									<th>Name</th>
+									<th>Licensing Class</th> 
+									<th>LBP Number</th>
+									<th>Certificate</th>
+								</tr>
+							</thead>
+							<tbody> 
+								<tr ng-repeat="item in submissions.lbp" class="tableLine">
+									<td>{{item.name}}</td>
+									<td>{{item.classL}}</td> 
+									<td>{{item.lbp}}</td>
+									<td>{{item.certificat}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Professional</h3>
+				</div>
+				<div class="panel-body">
+					<div class="table-responsive" >
+						<table class="table table-condensed">
+							<thead class="tableHead"> 
+								<tr>
+									<th>Profession</th>
+									<th>Name</th> 
+									<th>City</th>
+									<th>Phone</th>
+									<th>E-Mail</th>
+								</tr>
+							</thead>
+							<tbody> 
+								<tr ng-repeat="item in submissions.people" class="tableLine">
+									<td>{{item.type}}</td>
+									<td>{{item.name}}</td> 
+									<td>{{item.address.city}}</td> 
+									<td>{{item.phone}}</td>
+									<td>{{item.mail}}</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+			<div class="panel panel-primary">
+				<div class="panel-heading">
+					<h3 class="panel-title">Documents</h3>
+				</div>
+				<div class="panel-body">
+				<ul ng-repeat="item in submissions.doc">
+						<li><a ng-href= '{{item.url}}' target="_blank">{{item.name}}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
